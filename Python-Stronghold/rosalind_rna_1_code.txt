@@ -1,0 +1,45 @@
+# coding: utf-8
+
+# In[85]:
+
+
+filename='rosalind_rna.txt'
+
+with open(filename, 'r') as myfile:
+    data= myfile.read() 
+
+
+
+rna=''
+for i in data:
+    if i != 'T':
+        rna +=i
+    else:
+        rna +='U'
+
+
+# In[86]:
+
+
+rna
+
+
+# In[91]:
+
+
+
+def DNA_RNA (data, filename):
+    with open(filename, 'r') as myfile:
+     data= myfile.read()
+    data=data[0:-1]
+    RNA_TRANSLATOR = {'A':'A', 'C':'C','T':'U','G':'G'}
+    rna=''.join(RNA_TRANSLATOR[base] for base in data)
+    return rna
+
+
+DNA_RNA(data, filename)
+
+# rna=[(base if 'GAC' else 'U')for base in data]
+# rna=[base if base !='T' else 'U' for data]
+# rna=['U' if 'T' else base for base in data if base=='GAC']
+# rna=[base for base in data if base in 'GAC' ]

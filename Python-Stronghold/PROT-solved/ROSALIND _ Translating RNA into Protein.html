@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://rosalind.info/problems/prot/ -->
+<html lang="en" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>ROSALIND | Translating RNA into Protein</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script type="text/javascript" async="" src="./ROSALIND _ Translating RNA into Protein_files/ga.js.download"></script><script type="text/javascript">
+      (function() {
+          document.getElementsByTagName("html")[0].className += " loading loading-mathjax";
+      })();
+    </script>
+    
+    
+    
+    <!-- Le styles -->
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="./ROSALIND _ Translating RNA into Protein_files/rosalind.pack.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./ROSALIND _ Translating RNA into Protein_files/jquery-ui.css" type="text/css" media="all">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://rosalind.info/static/ico/favicon.ico?v=1560257990">
+  <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax_LineBox {display: table!important}
+.MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.1') format('woff'), url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.1') format('woff'), url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.1') format('woff'), url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.1') format('woff'), url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.1') format('woff'), url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.1') format('woff'), url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.1') format('woff'), url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.1') format('woff'), url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.1') format('woff'), url('http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.1') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+  <body><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"><br></div></div><div id="MathJax_Message" style="display: none;"></div>
+
+    <div class="navbar navbar-fixed-top hide-on-print">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://rosalind.info/"><img src="./ROSALIND _ Translating RNA into Protein_files/logo.png"></a>
+
+          <div class="nav-collapse">
+            <ul class="nav">
+               
+              <li class="dropdown ">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="http://rosalind.info/problems/prot/#">
+                      About
+                      <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li><a href="http://rosalind.info/about/">Project</a></li>
+                      <li><a href="http://rosalind.info/faq/">FAQ</a></li>
+                      <li><a href="http://rosalind.info/courses/">Courses</a></li>
+                      <li><a href="http://rosalind.info/faculty/">Faculty</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown ">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="http://rosalind.info/problems/prot/#">
+                      Problems
+                      <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li><a href="http://rosalind.info/problems/list-view/">List View</a></li>
+                      <li><a href="http://rosalind.info/problems/tree-view/">Tree View</a></li>
+                      <li><a href="http://rosalind.info/problems/topics/">Topics</a></li>
+                      
+                          <li><a href="http://rosalind.info/problems/locations/">Locations</a></li>
+                      
+                      <li><a href="http://rosalind.info/problems/suggested/">Add Problem</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown ">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="http://rosalind.info/problems/prot/#">
+                    Statistics
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="http://rosalind.info/statistics/top/">Top 100</a></li>
+                    <li><a href="http://rosalind.info/statistics/countries/">Countries</a></li>
+                    <li><a href="http://rosalind.info/statistics/levels/">Levels</a></li>
+                    <li><a href="http://rosalind.info/badges/">Badges</a></li>
+                    <li><a href="http://rosalind.info/achievements/">Achievements</a></li>
+                </ul>    
+              </li>
+              
+              <li class=""><a href="http://rosalind.info/glossary/">Glossary</a></li>
+            </ul>
+            
+            <form class="navbar-search pull-left" action="http://rosalind.info/search/" method="GET" enctype="multipart/form-data">
+                
+                
+                <input type="text" class="search-query " name="q" id="id_q" placeholder="search" accesskey="f" tabindex="1">
+            </form>
+
+            <div class="social-buttons">
+                <a href="http://www.facebook.com/pages/Rosalind/430419800314316" id="facebook" target="_blank" title="Facebook Profile"></a>
+                <a href="http://twitter.com/ProjectRosalind" id="twitter" target="_blank" title="Follow us on Twitter"></a>
+            </div>
+
+            <ul class="nav pull-right">
+                
+                    
+                
+                    <li class="" id="menu_profile"><a href="http://rosalind.info/users/lukasjasys/">lukasjasys</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="http://rosalind.info/accounts/logout/">Log out</a></li>
+                
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    
+    <div class="container main">
+        <noscript>
+            <div class="row-fluid">
+                <div class="alert alert-warning flash-message">
+                    It appears that your browser has JavaScript disabled. Rosalind requires your browser to be JavaScript enabled.
+                </div>
+            </div>
+        </noscript>
+        
+        
+        
+<h1>Translating RNA into Protein
+    
+        <nobr><small class="hide-on-print">
+            
+                <a href="http://rosalind.info/problems/prot/recent/">solved by 16217</a>
+            
+        </small></nobr>
+    
+</h1>
+
+<div class="problem-properties">
+<p class="date">
+    
+        July 2, 2012, 1 a.m.
+    
+    by
+    
+        <a href="http://rosalind.info/about/">Rosalind Team</a>
+    
+</p>
+
+</div>
+<ul class="problems-pager hide-on-print">
+    
+    
+    <li class="previous">
+        <a href="http://rosalind.info/problems/iprb/" data-content="Solved by 12046 (correct ratio 70.9%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;Heredity&lt;/span&gt;, &lt;span class=&quot;topic&quot;&gt;Probability&lt;/span&gt;&lt;/p&gt;" rel="popover" data-placement="right" data-trigger="hover" data-original-title="“Mendel&#39;s First Law”">←</a>
+    </li>
+    
+    
+    
+    <li class="next">
+        <a href="http://rosalind.info/problems/subs/" data-content="Solved by 16614 (correct ratio 72.1%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-placement="left" data-trigger="hover" data-original-title="“Finding a Motif in DNA”">→</a>
+    </li>
+    
+</ul>
+<div class="problem-statement problem-statement-bordered" problem="119">
+    <blockquote style="display: block;">
+<h2 id="the-genetic-code" class="pointer">The Genetic Code<span class="header-expander">click to expand</span></h2>
+<div style="display: none;"><div class="thumb"><a figure="Figure 1" href="http://rosalind.info/media/problems/prot/haemoglobin.png" lightbox-title="The human hemoglobin molecule consists of 4 polypeptide chains; α subunits are shown in red and β subunits are shown in blue" rel="lightbox[figures]" data-original-title=""><img src="./ROSALIND _ Translating RNA into Protein_files/haemoglobin.thumb.png"></a><div class="caption"><strong>Figure 1</strong><span>. </span><span>The human hemoglobin molecule consists of 4 polypeptide chains; α subunits are shown in red and β subunits are shown in blue</span></div>
+</div><p>Just as <a class="term" href="http://rosalind.info/glossary/nucleic-acid/" id="term-200" rel="tooltip" data-original-title="
+A polymer of nucleotides, constituting either RNA or DNA.">nucleic acids</a> are <a class="term" href="http://rosalind.info/glossary/polymer/" id="term-256" rel="tooltip" data-original-title="
+A molecule formed by a repeating chain of subunits.">polymers</a> of <a class="term" href="http://rosalind.info/glossary/nucleotide/" id="term-201" rel="tooltip" data-original-title="
+The monomer making up a nucleic acid.">nucleotides</a>, <a class="term new" href="http://rosalind.info/glossary/protein/" id="term-206" rel="tooltip" data-original-title="New term: The functional unit of the cell.">proteins</a> are chains of
+smaller molecules called <a class="term new" href="http://rosalind.info/glossary/amino-acid/" id="term-198" rel="tooltip" data-original-title="New term: 
+The monomer unit for proteins; the same 20 amino acids commonly occur in most species.">amino acids</a>; 20 amino acids commonly appear in every species.
+Just as the <a class="term" href="http://rosalind.info/glossary/nucleic-acid-primary-structure/" id="term-533" rel="tooltip" data-original-title="
+The order of bases on a strand of nucleic acid.">primary structure</a> of a <a class="term" href="http://rosalind.info/glossary/nucleic-acid/" id="term-200" rel="tooltip" data-original-title="
+A polymer of nucleotides, constituting either RNA or DNA.">nucleic acid</a> is given
+by the order of its <a class="term" href="http://rosalind.info/glossary/nucleotide/" id="term-201" rel="tooltip" data-original-title="
+The monomer making up a nucleic acid.">nucleotides</a>, the <a class="term new" href="http://rosalind.info/glossary/protein-primary-structure/" id="term-570" rel="tooltip" data-original-title="New term: 
+The order of amino acids on a protein.">primary structure</a> of a protein is the order
+of its amino acids.  Some proteins are composed of several subchains called <a class="term new" href="http://rosalind.info/glossary/polypeptide/" id="term-255" rel="tooltip" data-original-title="New term: 
+A long chain of amino acids.">polypeptides</a>, while others are formed of a single polypeptide;
+see <a href="http://rosalind.info/media/problems/prot/haemoglobin.png" lightbox-title="The human hemoglobin molecule consists of 4 polypeptide chains; α subunits are shown in red and β subunits are shown in blue" rel="lightbox[figures]" data-original-title="Click to view">Figure 1</a>. </p><p>Proteins power every practical function carried out by the <a class="term" href="http://rosalind.info/glossary/cell/" id="term-257" rel="tooltip" data-original-title="
+The &quot;building block of life,&quot; making up all living things on Earth.">cell</a>, and so presumably,
+the key to understanding life lies in interpreting the relationship between a chain of amino acids
+and the function of the protein that this chain of amino acids eventually constructs.
+<a class="term new" href="http://rosalind.info/glossary/proteomics/" id="term-536" rel="tooltip" data-original-title="New term: 
+The study of proteins and their properties.">Proteomics</a> is the field devoted to the study of proteins.</p><p>How are proteins created?  The <a class="term new" href="http://rosalind.info/glossary/genetic-code/" id="term-258" rel="tooltip" data-original-title="New term: 
+The exact specifications for translating nucleic acid codons into amino acids.">genetic code</a>, discovered throughout the course of a
+number of ingenious experiments in the late 1950s, details the
+<a class="term new" href="http://rosalind.info/glossary/translation/" id="term-247" rel="tooltip" data-original-title="New term: 
+The process by which mRNA is converted into a peptide chain for the creation of a protein.">translation</a> of an RNA molecule called <a class="term new" href="http://rosalind.info/glossary/messenger-rna/" id="term-266" rel="tooltip" data-original-title="New term: 
+An RNA molecule that serves as the blueprint for translation into protein.">messenger RNA</a> (mRNA) into amino acids for protein
+creation.  The apparent difficulty in translation is that somehow 4 RNA bases must be translated into a language of 20 amino acids;
+in order for every possible amino acid to be created, we must translate 3-<a class="term" href="http://rosalind.info/glossary/nucleobase/" id="term-544" rel="tooltip" data-original-title="
+The differentiating component of nucleotides.">nucleobase</a> <a class="term" href="http://rosalind.info/glossary/string/" id="term-803" rel="tooltip" data-original-title="
+An ordered collection of symbols formed into a word.">strings</a> (called <a class="term new" href="http://rosalind.info/glossary/codon/" id="term-259" rel="tooltip" data-original-title="New term: 
+A triplet of contiguous nucleotides.">codons</a>) into amino acids.
+Note that there are <mathjax><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msup&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;64&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 3.849em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.208em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.093em, 1003.21em, 2.375em, -999.997em); top: -2.176em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="msubsup" id="MathJax-Span-3"><span style="display: inline-block; position: relative; width: 0.901em; height: 0px;"><span style="position: absolute; clip: rect(3.08em, 1000.45em, 4.17em, -999.997em); top: -3.971em; left: 0em;"><span class="mn" id="MathJax-Span-4" style="font-family: MathJax_Main;">4</span><span style="display: inline-block; width: 0px; height: 3.978em;"></span></span><span style="position: absolute; top: -4.356em; left: 0.516em;"><span class="mn" id="MathJax-Span-5" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.978em;"></span></span></span></span><span class="mo" id="MathJax-Span-6" style="font-family: MathJax_Main; padding-left: 0.26em;">=</span><span class="mn" id="MathJax-Span-7" style="font-family: MathJax_Main; padding-left: 0.26em;">64</span></span><span style="display: inline-block; width: 0px; height: 2.183em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.073em; border-left: 0px solid; width: 0px; height: 1.235em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>4</mn><mn>3</mn></msup><mo>=</mo><mn>64</mn></math></span></span><script type="math/tex" id="MathJax-Element-1">4^3 = 64</script></mathjax> possible codons, so that multiple codons may encode the same amino acid.
+Two special types of codons are the <a class="term new" data-math="true" href="http://rosalind.info/glossary/start-codon/" id="term-260" rel="tooltip" data-original-title="New term: 
+The RNA codon $\textrm{AUG}$, which codes for the amino acid methionine and indicates the beginning
+of translation into protein.">start codon</a> (AUG), which codes for the amino acid methionine
+always indicates the start of translation, and the three <a class="term new" href="http://rosalind.info/glossary/stop-codon/" id="term-261" rel="tooltip" data-original-title="New term: 
+One of three possible RNA codons that indicate the termination of protein translation.">stop codons</a> (UAA, UAG, UGA),
+which do not code for an amino acid and cause translation to end.</p><p>The notion that protein is always created from RNA, which in turn is always created from
+DNA, forms the <a class="term new" href="http://rosalind.info/glossary/central-dogma-of-molecular-biology/" id="term-628" rel="tooltip" data-original-title="New term: 
+A postulate dictating that protein is always translated from RNA, which in turn is always transcribed from DNA.">central dogma of molecular biology</a>.  Like all dogmas, it does not always hold;
+however, it offers an excellent approximation of the truth.</p><p>An <a class="term" href="http://rosalind.info/glossary/organelle/" id="term-262" rel="tooltip" data-original-title="
+A structure in the cell that serves as the central hub for some particular group of cellular
+functions.">organelle</a> called a <a class="term new" href="http://rosalind.info/glossary/ribosome/" id="term-263" rel="tooltip" data-original-title="New term: 
+An organelle that carries out the assembly of peptides from mRNA during translation.">ribosome</a> creates peptides by
+using a helper molecule called <a class="term new" href="http://rosalind.info/glossary/transfer-rna/" id="term-264" rel="tooltip" data-original-title="New term: The helper molecule used by ribosomes for physically translating codons into amino acids.">transfer RNA</a> (tRNA).
+A single tRNA molecule possesses a string of three RNA nucleotides on one end (called an <a class="term new" href="http://rosalind.info/glossary/anticodon/" id="term-265" rel="tooltip" data-original-title="New term: 
+A string of length 3 whose symbols are complementary to those of a given RNA codon.">anticodon</a>) and an amino
+acid at the other end.  The ribosome takes an RNA molecule <a class="term" href="http://rosalind.info/glossary/rna-transcription/" id="term-330" rel="tooltip" data-original-title="
+The process by which DNA is converted into RNA.">transcribed</a> from DNA (see <a data-content="Solved by 34255 (correct ratio 85.6%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" data-trigger="hover" href="http://rosalind.info/problems/rna/" rel="popover" data-original-title="“Transcribing DNA into RNA”">“Transcribing DNA into RNA”</a>), called
+<a class="term new" href="http://rosalind.info/glossary/messenger-rna/" id="term-266" rel="tooltip" data-original-title="New term: 
+An RNA molecule that serves as the blueprint for translation into protein.">messenger RNA</a> (mRNA), and examines it one codon at a time.
+At each step, the tRNA possessing the complementary anticodon bonds to the mRNA at this location,
+and the amino acid found on the opposite end of the tRNA is added to the growing peptide
+chain before the remaining part of the tRNA is ejected into the cell, and the ribosome looks
+for the next tRNA molecule.</p><p>Not every RNA base eventually becomes translated into a protein, and so an interval of RNA
+(or an interval of DNA translated into RNA) that does code for a protein
+is of great biological interest; such an interval of DNA or RNA is called a <a class="term new" href="http://rosalind.info/glossary/gene/" id="term-363" rel="tooltip" data-original-title="New term: 
+An interval of DNA whose nucleotides are translated into a polypeptide for protein creation.">gene</a>.  Because protein creation
+drives cellular processes, genes differentiate organisms and serve as a basis
+for <a class="term new" href="http://rosalind.info/glossary/heredity/" id="term-420" rel="tooltip" data-original-title="New term: 
+The scientific study of the inheritance of traits.">heredity</a>, or the process by which traits are inherited.</p></div>
+
+
+
+
+
+
+</blockquote>
+<h2 id="problem">Problem</h2>
+<p>The 20 commonly occurring amino acids are abbreviated by using 20 letters from
+the English <a class="term" href="http://rosalind.info/glossary/alphabet/" id="term-359" rel="tooltip" data-original-title="
+A collection of symbols from which strings are constructed.">alphabet</a> (all letters except for B, J, O, U, X, and Z). <a class="term new" href="http://rosalind.info/glossary/protein-string/" id="term-371" rel="tooltip" data-original-title="New term: 
+A string composed of symbols taken from the English alphabet less B, J, O, U, X, and Z;
+representing a peptide chain formed from amino acids.">Protein strings</a> are constructed from these 20 symbols.
+Henceforth, the term <a class="term new" href="http://rosalind.info/glossary/genetic-string/" id="term-215" rel="tooltip" data-original-title="New term: 
+A DNA, RNA, or amino acid string.">genetic string</a> will incorporate protein strings along with <a class="term" href="http://rosalind.info/glossary/dna-string/" id="term-349" rel="tooltip" data-original-title="
+A string constructed from the alphabet {A, C, G, T}.">DNA strings</a> and <a class="term" href="http://rosalind.info/glossary/rna-string/" id="term-350" rel="tooltip" data-original-title="
+A string constructed from the alphabet {A, C, G, U}.">RNA strings</a>.</p>
+<p>The <a class="term new" href="http://rosalind.info/glossary/rna-codon-table/" id="term-217" rel="tooltip" data-original-title="New term: A table indicating the translation of individual RNA codons into amino acids for the
+purpose of protein creation.">RNA codon table</a> dictates the details regarding the encoding of specific codons into the amino acid alphabet.</p>
+<p><span class="given-return">Given:</span> An <a class="term" href="http://rosalind.info/glossary/rna-string/" id="term-350" rel="tooltip" data-original-title="
+A string constructed from the alphabet {A, C, G, U}.">RNA string</a> <mathjax><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-8" style="width: 0.58em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.452em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.542em, 1000.39em, 2.375em, -999.997em); top: -2.176em; left: 0em;"><span class="mrow" id="MathJax-Span-9"><span class="mi" id="MathJax-Span-10" style="font-family: MathJax_Math-italic;">s</span></span><span style="display: inline-block; width: 0px; height: 2.183em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.073em; border-left: 0px solid; width: 0px; height: 0.696em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>s</mi></math></span></span><script type="math/tex" id="MathJax-Element-2">s</script></mathjax> corresponding to a strand of mRNA (of length at most 10 <a class="term" href="http://rosalind.info/glossary/kbp/" id="term-394" rel="tooltip" data-original-title="
+1 kbp = 1000 base pairs">kbp</a>).</p>
+<p><span class="given-return">Return:</span> The protein string encoded by <mathjax><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-11" style="width: 0.58em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.452em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.542em, 1000.39em, 2.375em, -999.997em); top: -2.176em; left: 0em;"><span class="mrow" id="MathJax-Span-12"><span class="mi" id="MathJax-Span-13" style="font-family: MathJax_Math-italic;">s</span></span><span style="display: inline-block; width: 0px; height: 2.183em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.073em; border-left: 0px solid; width: 0px; height: 0.696em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>s</mi></math></span></span><script type="math/tex" id="MathJax-Element-3">s</script></mathjax>.</p>
+<h2 id="sample-dataset">Sample Dataset</h2>
+<div class="codehilite"><pre>AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA
+</pre></div>
+
+
+<h2 id="sample-output">Sample Output</h2>
+<div class="codehilite"><pre>MAMAPRTEINSTRING
+</pre></div>
+
+
+<div class="clearfix"></div>
+</div>
+
+
+    <div class="row">
+        <div class="span7">
+            
+                <p class="problem-timelimit  hide-on-print"><span class="label label-info">Time limit</span> You'll have <span id="id_span_timelimit">5 minutes</span> to upload the answer.</p>
+                <p class="problem-timeleft hide hide-on-print" style="display: none;"><span class="label label-important">Time left</span> You have <span id="id_span_timeleft"></span> to upload the answer.</p>
+                <p class="problem-timewait hide hide-on-print" style="display: none;"><span class="label label-warning">Please wait</span> You may make another attempt in <span id="id_span_timewait"></span>.</p>
+            
+
+            
+
+            
+                <div class="problem-dataset  hide-on-print">
+                    <p>
+                        <a id="id_problem_dataset_link" class="btn btn-primary btn-large" rel="nofollow" href="http://rosalind.info/problems/prot/dataset/">
+                          Download dataset
+                        </a>
+                        You may make an unlimited number of attempts without being penalized.
+                    </p>
+                </div>
+                <div class="problem-dataset-again hide hide-on-print" style="display: none;">
+                    <p>
+                        <a class="btn btn-large" rel="nofollow" href="http://rosalind.info/problems/prot/dataset/">
+                          Download current dataset again
+                        </a>
+                    </p>
+                </div>
+            
+        </div>
+        <div class="span5 problem-comments hide-on-print">
+            
+            
+        </div>
+    </div>
+
+    
+
+    
+        <div class="problem-submission hide hide-on-print" style="display: none;">
+            <h2>Answer submission <small id="id_countdown"></small></h2>
+            <form id="id_form_submission" class="well" action="http://rosalind.info/problems/prot/" method="POST" enctype="multipart/form-data">
+            <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="dmUyv65BXZKWhPmd74FWVI4uwEw8MGoO"></div>
+            
+
+<fieldset>
+
+  
+      
+<div class="control-group ">
+    
+        <label class="control-label" for="id_output_text">Copy your answer here:</label>
+        <div class="controls">
+            <textarea id="id_output_text" rows="10" cols="40" name="output_text"></textarea>
+            
+        </div>
+    
+    
+</div>
+  
+      
+<div class="control-group ">
+    
+        <label class="control-label" for="id_output_file">Or just attach a file with the answer:</label>
+        <div class="controls">
+            <input type="file" name="output_file" id="id_output_file">
+            
+        </div>
+    
+    
+</div>
+  
+      
+<div class="control-group ">
+    
+        <label class="control-label" for="id_code">Your code (optional):</label>
+        <div class="controls">
+            <input type="file" name="code" id="id_code">
+            
+        </div>
+    
+    
+</div>
+  
+  
+  
+  
+  
+      <div class="">
+        <button type="submit" class="btn btn-primary btn-large">Submit</button>
+        
+      </div>
+  
+  
+</fieldset>
+            </form>
+        </div>
+    
+
+    <div class="modal hide" id="id_submission_timeout">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Time Limit</h3>
+        </div>
+        <div class="modal-body">
+            <p>Try again faster.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="http://rosalind.info/problems/prot/#" class="btn" data-dismiss="modal">Close</a>
+        </div>
+    </div>
+
+
+
+
+        <div class="footer hide-on-print">
+            <ul>
+                <li><span rel="tooltip" data-original-title="Select a typo with your mouse and press Ctrl+Enter">Found a typo?</span></li>
+                <li><a href="http://rosalind.info/problems/suggested/">Suggest a new problem</a></li>
+                <li><a class="take-tour" href="http://rosalind.info/problems/list-view/">Take a tour</a></li>
+            </ul>
+        </div>
+    </div> <!-- /container -->
+    
+    
+    <div class="modal hide" id="id_report_typo">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Report a typo</h3>
+    </div>
+    
+    <div class="modal-body">
+        <p>Page:<br><span id="id_report_typo_page"></span></p>
+        <p>Context:<br><span id="id_report_typo_context"></span></p>
+        <form id="id_report_typo_form" action="http://rosalind.info/typos/report/" method="POST" autocomplete="off">
+            
+
+    <input type="hidden" name="context" id="id_context">
+
+<fieldset>
+
+  
+      
+<div class="control-group ">
+    
+        <label class="control-label" for="id_comment">Comment:</label>
+        <div class="controls">
+            <textarea id="id_comment" rows="10" cols="40" name="comment"></textarea>
+            
+        </div>
+    
+    
+</div>
+  
+      
+<div class="control-group ">
+    
+        <div class="controls">
+            <label class="checkbox" for="id_is_notify_user">
+                <input checked="checked" type="checkbox" name="is_notify_user" id="id_is_notify_user"> <span>Notify me about changes</span>
+            </label>
+            
+        </div>
+    
+    
+</div>
+  
+  
+  
+  
+  
+  
+</fieldset>
+        </form>
+    </div>
+    
+    <div class="modal-footer">
+        <a href="http://rosalind.info/problems/prot/#" class="btn btn-primary" id="id_report_typo_submit">Report</a>
+        <a href="http://rosalind.info/problems/prot/#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+</div>
+
+    <div class="modal hide" id="id_modal">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3></h3>
+        </div>
+        <div class="modal-body">
+            <p></p>
+        </div>
+        <div class="modal-footer">
+            <a href="http://rosalind.info/problems/prot/#" class="btn" data-dismiss="modal">Close</a>
+        </div>
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script type="text/javascript" src="./ROSALIND _ Translating RNA into Protein_files/jquery.min.js.download"></script>
+    <script type="text/javascript" src="./ROSALIND _ Translating RNA into Protein_files/jquery-ui.min.js.download"></script>
+    <script type="text/javascript" charset="utf-8">
+        var RosalindSettings = {"is_authenticated": true, "is_solver": true, "urls": {"log_block_collapse": "/problems/log/block/collapse/", "log_block_expand": "/problems/log/block/expand/", "glossary_index": "/glossary/", "log_wikipedia": "/glossary/log/wikipedia/", "log_figure": "/problems/log/figure/"}};
+    </script>
+    <script type="text/javascript" src="./ROSALIND _ Translating RNA into Protein_files/rosalind.pack.min.js.download"></script>
+    <script type="text/javascript" charset="utf-8">
+        
+            
+                action_queue.add_action(new Action({"action": "problem-view", "options": {"timelimit": 300, "state": 1, "timeleft": 300, "timewait": 0}}));
+            
+        
+    </script>
+    
+    
+    
+    <script type="text/x-mathjax-config;executed=true">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}, TeX: {extensions: ["mhchem.js", "color.js"]}});
+    </script>
+    <script type="text/javascript" src="./ROSALIND _ Translating RNA into Protein_files/MathJax.js.download">
+    </script>
+    
+    
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+    
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-32242996-1']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    
+    </script>
+    <!-- Google Analytics -->
+    
+
+  
+
+<div id="lightboxOverlay" style="display: none;"></div><div id="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image"><div class="lb-nav"><a class="lb-prev"></a><a class="lb-next"></a></div><div class="lb-loader"><a class="lb-cancel"><img src="./ROSALIND _ Translating RNA into Protein_files/loading.gif"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"><img src="./ROSALIND _ Translating RNA into Protein_files/close.png"></a></div></div></div></div><div id="glossaryWindow" class="modal hide"><div class="modal-header"><button class="close" data-dismiss="modal">×</button><h3 id="glossaryHeader"></h3></div><div id="glossaryLoader" class="modal-body" style="display: none;"><i class="icon-spinner icon-spin"></i></div><div id="glossaryBody" class="modal-body" style="display: none;"></div><div class="modal-footer"><a id="glossaryWikipediaLink" href="http://rosalind.info/problems/prot/#" class="btn btn-info hide" target="_blank">Wikipedia</a><a href="http://rosalind.info/problems/prot/#" class="btn" data-dismiss="modal">Close</a></div></div><div id="flagWindow" class="modal hide"><div class="modal-header"><button class="close" data-dismiss="modal">×</button><h3 id="flagHeader">Flag as inappropriate</h3></div><div id="flagBody" class="modal-body">Are you sure you want to flag this comment as inappropriate?</div><div class="modal-footer"><a id="flagLink" href="http://rosalind.info/problems/prot/#" class="btn btn-warning">Yes, flag it</a><a href="http://rosalind.info/problems/prot/#" class="btn" data-dismiss="modal">Cancel</a></div></div><div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Math-italic, sans-serif;"></div></div></body></html>
