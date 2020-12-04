@@ -30,7 +30,7 @@ def rev_complement (string_name):
     data_rev=string_name[::-1]
     #create a new string by looping through the reverse string and
     #picking the corresponding base using the disctionary
-    return 
+    return ''.join([complement[base] for base in data_rev])
     #lastly, make a new file and save the output
 # print(DNA_codon_dict)
 
